@@ -130,10 +130,10 @@ namespace RaceTrainingPlan
             {
                 //use LINQ Single() or SingleOrDefault() 
                 //FullTrainingPlan.find where week and day match, then overwrite workout
-                var myObject = eTRoutine.SingleOrDefault(item => item.Week == EditSelection().WeekSelection && item.Day == EditSelection().Day);
+                var myObject = eTRoutine.SingleOrDefault(TrainingRoutine => TR.Week == TR.Week && TR.Day == TR.Day);
 
-                //that would find your item, then you do something like 
-                TR.Workout = _editedTrainingRoutine.Workout;
+                //once isolated from above steps, match desired data to overwrite
+                TR.Workout = TR.Workout;
             }
 
             using( var writer = new StreamWriter( fileName ) )
