@@ -134,6 +134,9 @@ namespace RaceTrainingPlan
 
                 //once isolated from above steps, match desired data to overwrite
                 TR.Workout = TR.Workout;
+
+                Console.WriteLine( myObject );
+
             }
 
             using( var writer = new StreamWriter( fileName ) )
