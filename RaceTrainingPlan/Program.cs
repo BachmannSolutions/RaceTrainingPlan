@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-
+using System.Linq;
 
 namespace RaceTrainingPlan
 {
@@ -70,7 +70,6 @@ namespace RaceTrainingPlan
                 int daySelection = UserScreen.Prompt("Which day do you want to edit? ", 1,7);
                 string workoutSelection = UserScreen.Prompt("What workout will you do? ");
                 //+"" is the same as converting an INT to a STRING
-                //need to compare edite TR to original TR
                 _editedTrainingRoutine.Add( new TrainingRoutine { Week = weekSelection+"", Day = daySelection+"", Workout = workoutSelection } );
                 done = UserScreen.Continue( "Edit another routine? Press y/n " );
 
@@ -123,25 +122,23 @@ namespace RaceTrainingPlan
             }
             return FullTrainingPlan;
         }
-
-        //TODO: how do I get what's in the CSV and prompt the user to edit something, then make it stick in this below
+        
         public static List<TrainingRoutine> WriteTrainingRoutine( string fileName, List<TrainingRoutine> eTRoutine )
         {
             var FullTrainingPlan = new List<TrainingRoutine>();
             foreach( TrainingRoutine TR in eTRoutine )
             {
-                //use LINQ find sytnax
+                //use LINQ Single() or SingleOrDefault() 
                 //FullTrainingPlan.find where week and day match, then overwrite workout
+                var myObject = eTRoutine.SingleOrDefault(item => item.Week == EditSelection().WeekSelection && item.Day == EditSelection().Day);
 
-                string text = File.ReadAllText(fileName);
-                text = text.Replace( TR.Workout, TR.Workout );
-
-                File.WriteAllText( "EditedTrainingRountine.csv", text );
+                //that would find your item, then you do something like 
+                TR.Workout = _editedTrainingRoutine.Workout;
             }
 
             using( var writer = new StreamWriter( fileName ) )
             {
-                foreach( TrainingRoutine TR in eTRoutine)
+                foreach( TrainingRoutine TR in FullTrainingPlan)
                 {
                     writer.WriteLine( TR.Week + "," + TR.Day + "," + TR.Workout );
                 }

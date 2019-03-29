@@ -1,4 +1,6 @@
-﻿namespace RaceTrainingPlan
+﻿using System;
+
+namespace RaceTrainingPlan
 {
     class TrainingRoutine
     {
