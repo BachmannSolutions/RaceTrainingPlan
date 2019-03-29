@@ -132,37 +132,12 @@ namespace RaceTrainingPlan
             {
                 //use LINQ find sytnax
                 //FullTrainingPlan.find where week and day match, then overwrite workout
-                //mylist = mylist.Where( n => n.Id == ID ).Select( n => { n.Property = ""; return n; } ).ToList();
-                //mylist = mylist.Select( n => { if( n.Id == ID ) { n.Property = ""; } return n; } ).ToList();
 
+                string text = File.ReadAllText(fileName);
+                text = text.Replace( TR.Workout, TR.Workout );
+
+                File.WriteAllText( "EditedTrainingRountine.csv", text );
             }
-
-
-
-            ///////////////////////////
-            //try
-            //{
-            //    TR.SubmitChanges( ConflictMode.ContinueOnConflict );
-            //}
-
-            //catch( ChangeConflictException e )
-            //{
-            //    Console.WriteLine( e.Message );
-            //    foreach( ObjectChangeConflict occ in db.ChangeConflicts )
-            //    {
-            //        //No database values are merged into current.
-            //        occ.Resolve( RefreshMode.KeepCurrentValues );
-            //    }
-            //}
-            ////////////////////////////////////////
-
-
-
-
-
-
-
-
 
             using( var writer = new StreamWriter( fileName ) )
             {
