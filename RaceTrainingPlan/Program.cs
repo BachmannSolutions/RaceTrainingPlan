@@ -56,6 +56,8 @@ namespace RaceTrainingPlan
         }
 
         // Case 2: Prompts user for Week, Day, and Routine and edits routine.
+
+
         static void EditSelection()
         {
             Console.Clear();
@@ -133,10 +135,7 @@ namespace RaceTrainingPlan
                 var myObject = eTRoutine.SingleOrDefault(TrainingRoutine => TR.Week == TR.Week && TR.Day == TR.Day);
 
                 //once isolated from above steps, match desired data to overwrite
-                TR.Workout = TR.Workout;
-
-                Console.WriteLine( myObject );
-
+                myObject.Workout = TR.Workout;
             }
 
             using( var writer = new StreamWriter( fileName ) )

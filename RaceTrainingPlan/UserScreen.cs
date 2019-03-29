@@ -13,6 +13,7 @@ namespace RaceTrainingPlan
         }
 
         // Prompts the user to provide a value.
+
         internal static int Prompt( string message, int pLowNum, int pHighNum )
         {
             bool ExitFlag = false;
